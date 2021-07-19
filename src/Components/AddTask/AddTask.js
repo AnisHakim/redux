@@ -1,26 +1,24 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from "react-redux"
+import { addTask, updateText, removeText } from "../../JS/Actions/Action"
+const AddTask = () => {
 
-export class AddTask extends Component {
-    state={
-        text :""
-    }
-    handleChange = (e) =>{
-        console.log(e)
-        this.setState({ text:e.target.value  });
 
+    const text = useSelector(state => state.text)
+    const dispatch = useDispatch();
+    const doubleDispatch = (text) => {
+        dispatch(addTask(text));
+        dispatch(removeText());
     }
-        
-    
-    render() {
-        return (
-            <div className="add">
-                <input type="text"
-                onChange={this.handleChange}
-                value={this.state.text}/>
-                <button onClick={()=>{this.props.handleAdd(this.state.text);this.setState({ text: "" });}}>ADD</button>
-            </div>
-        )
-    }
+    return (
+        <div className="add">
+            <input type="text"
+                onChange={(e) => dispatch(updateText(e))}
+                value={text} />
+            <button onClick={() => doubleDispatch(text)}>ADD</button>
+        </div>
+    )
+
 }
 
 export default AddTask
