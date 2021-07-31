@@ -53,6 +53,18 @@ input {
   color: #fff;
   border-radius: 0 4px 4px 0;
 }
+.filter button {
+  outline: none;
+  border: none;
+  padding: 16px;
+  background: linear-gradient(
+    90deg,
+    rgb(12, 117, 255) 0%,
+    rgb(67, 0, 250) 100%
+  );
+  color: #fff;
+  border-radius: 0 4px 4px 0;
+}
 .task {
   color: white;
   display: flex;
