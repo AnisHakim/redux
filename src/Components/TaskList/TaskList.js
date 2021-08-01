@@ -7,8 +7,9 @@ const TaskList = () => {
   const filteredList = useSelector((state) => state.filteredList);
   const filter = useSelector((state) => state.filter);
   const list =
-    filter.toUpperCase().includes('DONE') ||
-    filter.toUpperCase().includes('COMPLETE')
+    filter.toUpperCase() === 'ISDONE' ||
+    filter.toUpperCase().includes('COMPLETE') ||
+    filter.toUpperCase() === 'ISNOTDONE'
       ? filteredList
       : taskList;
   return (

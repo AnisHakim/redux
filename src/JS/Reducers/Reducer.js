@@ -80,15 +80,21 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
         filteredList:
-          action.payload.toUpperCase().includes('DONE') ||
+          action.payload.toUpperCase() === 'ISDONE' ||
           action.payload.toUpperCase().includes('COMPLETE')
             ? state.tasklist.filter((el) => el.isDone)
+            : action.payload.toUpperCase() === 'ISNOTDONE'
+            ? state.tasklist.filter((el) => !el.isDone)
             : state.tasklist,
       };
     case 'UPDATE_FILTER':
       return {
         ...state,
         filter: action.payload.target.value,
+        filteredList:
+          action.payload.target.value === ''
+            ? state.tasklist
+            : state.filteredList,
       };
     case 'UPDATE_TASK':
       return {
